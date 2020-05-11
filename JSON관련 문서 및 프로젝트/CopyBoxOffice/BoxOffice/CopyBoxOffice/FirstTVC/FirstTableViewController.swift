@@ -97,10 +97,10 @@ class FirstTableViewController: UITableViewController {
         
         cell.titleLabel.text = movie.title
         cell.gradeLabel.text = String(movie.grade)
-        cell.userRatingLabel.text = String(movie.userRating)
-        cell.reservationGraderLabel.text = String(movie.reservationGrade)
-        cell.reservationRateLabel.text = String(movie.reservationRate)
-        cell.dateLabel.text = movie.date
+        cell.userRatingLabel.text = "평점: \(String(movie.userRating))"
+        cell.reservationGraderLabel.text = "예매순위: \(String(movie.reservationGrade))"
+        cell.reservationRateLabel.text = "예매율: \(String(movie.reservationRate))"
+        cell.dateLabel.text = "개봉일: \(movie.date)"
         
         return cell
     }
