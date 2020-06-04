@@ -37,28 +37,23 @@ class FirstTableViewController: UITableViewController {
         //Parse Json
         let urlString = "https://connect-boxoffice.run.goorm.io/movies?order_type=\(index)"
         guard let url = URL(string: urlString) else {return}
-        
-        let session : URLSession = URLSession(configuration: .default)
-        let dataTask : URLSessionDataTask = session.dataTask(with: url) { (data, response, err) in
-            
+        //URLSession은 어짜피 비동기처리를 알아서 하니까 상관없겠네.
+        URLSession.shared.dataTask(with: url) { (data, response, err) in
+            //err handling 기법은 여러가지가 있나보네.
             guard let data = data else {return}
-            
             do {
                 let movieList = try JSONDecoder().decode(MovieList.self, from: data)
                 print(movieList)
                 self.movieList = movieList.movies
                 print(self.movieList)
-                
+
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-                
             } catch let jsonErr {
                 debugPrint(jsonErr)
             }
-            
-        }
-        dataTask.resume()
+        }.resume()
     }
     
     @IBAction func changeSC(_ sender: UISegmentedControl) {
