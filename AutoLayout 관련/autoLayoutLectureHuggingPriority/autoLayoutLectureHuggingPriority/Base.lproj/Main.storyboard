@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="autoLayoutLectureHuggingPriority" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="P1800858" translatesAutoresizingMaskIntoConstraints="NO" id="MIR-DU-2CY">
+                                <rect key="frame" x="57" y="502" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="92K-7D-Hye"/>
+                                    <constraint firstAttribute="height" constant="300" id="SPm-yt-Z39"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mAi-9U-s6b">
+                                <rect key="frame" x="43" y="74" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="changeBottomConstraint:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2oP-Ba-fqn"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="P1800624" translatesAutoresizingMaskIntoConstraints="NO" id="FY3-w5-xXH">
+                                <rect key="frame" x="107" y="248" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="2r1-Ff-c3c"/>
+                                    <constraint firstAttribute="width" constant="200" id="9Q7-e4-ejf"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="MIR-DU-2CY" secondAttribute="bottom" constant="60" id="4Qh-ve-fjS"/>
+                            <constraint firstItem="mAi-9U-s6b" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="6Kp-v4-Mg6"/>
+                            <constraint firstItem="mAi-9U-s6b" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="43" id="EiK-ii-3Oy"/>
+                            <constraint firstItem="MIR-DU-2CY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="R4c-0G-qYa"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="MIR-DU-2CY" secondAttribute="bottom" priority="900" constant="200" id="Ubo-6n-7ZM"/>
+                            <constraint firstItem="FY3-w5-xXH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="a2I-sX-sN9"/>
+                            <constraint firstItem="FY3-w5-xXH" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" priority="200" constant="-100" id="zY8-Lk-4HG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="bottomStraint" destination="4Qh-ve-fjS" id="A5X-ss-bWj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-7.2463768115942031" y="99.776785714285708"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="P1800624" width="2304" height="1296"/>
+        <image name="P1800858" width="2304" height="1296"/>
+    </resources>
+</document>
