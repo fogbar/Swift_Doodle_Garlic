@@ -12,6 +12,8 @@ import UIKit
 //var requestNumber:Int = user.myRequests.count
 
 // User는 싱글톤으로 만들었음. 그럼 나머지 Request나 DetailRequest는 어떻게? User 외부에 선언해야할 것 같으니 외부에 선언해보자!
+
+//이건 데이터를 만드는 흐름이고, 만들어진 데이터를 보는 흐름은 따로있다. 서버에 만들어져 있는 데이터를 볼때는 내가 화면에서 보고 싶은 정보가 있는데 그 필요한 리소스만 요청해서 서버에서 데이터를 가져와야 한다.
 class User {
     static let getInstance = User()
     
