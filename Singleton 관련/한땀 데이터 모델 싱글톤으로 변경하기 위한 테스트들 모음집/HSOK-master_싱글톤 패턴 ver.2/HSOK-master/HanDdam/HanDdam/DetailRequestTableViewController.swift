@@ -13,7 +13,12 @@ class DetailRequestTableViewController: UITableViewController {
     var currentButtonText = "다음"
     var isButtonSelected = true
     let buttonTagList : [Int] = [201, 202, 203, 204, 205, 206, 207, 208]
-    
+    // 이놈을 아래 주석처리한 enum 처럼 하면 처리할 수 있을 것 같은데
+    /*
+    enum buttonTag:Int {
+        case make = 201, borrow, silk, waterSilk, 
+    }
+    */
     var imagePicker = UIImagePickerController()
     
     var currentPerson : String = ""
@@ -95,11 +100,11 @@ class DetailRequestTableViewController: UITableViewController {
                     sender.setTitle(currentButtonText, for: .highlighted)
                 }
                 
-//                //selected된 버튼들 모두 풀기
-//                for tag in buttonTagList {
-//                    guard let button = self.tableView.viewWithTag(tag) as? UIButton else {return}
-//                    button.isSelected = !isButtonSelected
-//                }
+                //selected된 버튼들 모두 풀기
+                for tag in buttonTagList {
+                    guard let button = self.tableView.viewWithTag(tag) as? UIButton else {return}
+                    button.isSelected = !isButtonSelected
+                }
                 //Image default로 돌려놓기
                 let imageIndexpath = IndexPath(row: 0, section: 4)
                 guard let itemCell = self.tableView.cellForRow(at: imageIndexpath) as? ImageCell else {return}
@@ -142,27 +147,75 @@ class DetailRequestTableViewController: UITableViewController {
     @IBAction func touchElementsBtn(_ sender: UIButton) {
         switch sender.tag {
         case 201:
+            guard let exclusiveBtn = self.view.viewWithTag(202) as? UIButton else {return}
+            if exclusiveBtn.isSelected == true {
+                exclusiveBtn.isSelected = false
+            }
             detailRequest.makingType = MakingType.make.rawValue
             print(detailRequest.makingType)
         case 202:
+            guard let exclusiveBtn = self.view.viewWithTag(201) as? UIButton else {return}
+            if exclusiveBtn.isSelected == true {
+                exclusiveBtn.isSelected = false
+            }
             detailRequest.makingType = MakingType.borrow.rawValue
             print(detailRequest.makingType)
         case 203:
+            guard let exclusiveBtn = self.view.viewWithTag(204) as? UIButton else {return}
+            if exclusiveBtn.isSelected == true {
+                exclusiveBtn.isSelected = false
+            }
             detailRequest.fabric = Fabric.silk.rawValue
             print(detailRequest.fabric)
         case 204:
+            guard let exclusiveBtn = self.view.viewWithTag(203) as? UIButton else {return}
+            if exclusiveBtn.isSelected == true {
+                exclusiveBtn.isSelected = false
+            }
             detailRequest.fabric = Fabric.waterSilk.rawValue
             print(detailRequest.fabric)
         case 205:
+            guard let exclusiveBtn1 = self.view.viewWithTag(206) as? UIButton else {return}
+            guard let exclusiveBtn2 = self.view.viewWithTag(207) as? UIButton else {return}
+            guard let exclusiveBtn3 = self.view.viewWithTag(208) as? UIButton else {return}
+            if exclusiveBtn1.isSelected == true || exclusiveBtn2.isSelected == true || exclusiveBtn3.isSelected == true {
+                exclusiveBtn1.isSelected = false
+                exclusiveBtn2.isSelected = false
+                exclusiveBtn3.isSelected = false
+            }
             detailRequest.season = Season.spring.rawValue
             print(detailRequest.season)
         case 206:
+            guard let exclusiveBtn1 = self.view.viewWithTag(205) as? UIButton else {return}
+            guard let exclusiveBtn2 = self.view.viewWithTag(207) as? UIButton else {return}
+            guard let exclusiveBtn3 = self.view.viewWithTag(208) as? UIButton else {return}
+            if exclusiveBtn1.isSelected == true || exclusiveBtn2.isSelected == true || exclusiveBtn3.isSelected == true {
+                exclusiveBtn1.isSelected = false
+                exclusiveBtn2.isSelected = false
+                exclusiveBtn3.isSelected = false
+            }
             detailRequest.season = Season.summer.rawValue
             print(detailRequest.season)
         case 207:
+            guard let exclusiveBtn1 = self.view.viewWithTag(205) as? UIButton else {return}
+            guard let exclusiveBtn2 = self.view.viewWithTag(206) as? UIButton else {return}
+            guard let exclusiveBtn3 = self.view.viewWithTag(208) as? UIButton else {return}
+            if exclusiveBtn1.isSelected == true || exclusiveBtn2.isSelected == true || exclusiveBtn3.isSelected == true {
+                exclusiveBtn1.isSelected = false
+                exclusiveBtn2.isSelected = false
+                exclusiveBtn3.isSelected = false
+            }
             detailRequest.season = Season.fall.rawValue
             print(detailRequest.season)
         case 208:
+            guard let exclusiveBtn1 = self.view.viewWithTag(205) as? UIButton else {return}
+            guard let exclusiveBtn2 = self.view.viewWithTag(206) as? UIButton else {return}
+            guard let exclusiveBtn3 = self.view.viewWithTag(207) as? UIButton else {return}
+            if exclusiveBtn1.isSelected == true || exclusiveBtn2.isSelected == true || exclusiveBtn3.isSelected == true {
+                exclusiveBtn1.isSelected = false
+                exclusiveBtn2.isSelected = false
+                exclusiveBtn3.isSelected = false
+            }
             detailRequest.season = Season.winter.rawValue
             print(detailRequest.season)
         default:

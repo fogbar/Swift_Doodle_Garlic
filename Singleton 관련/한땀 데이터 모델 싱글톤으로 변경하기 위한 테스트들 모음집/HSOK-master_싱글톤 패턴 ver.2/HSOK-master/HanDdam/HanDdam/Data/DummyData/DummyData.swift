@@ -28,7 +28,7 @@ import Foundation
 
 
 //사장님들 bidder Dummy Data
-let bidderDummy1 = Bidder(storeName: "운현주단", phoneNumber: "123", location: "456", biddingList: [biddingDummy1])
+let bidderDummy1 = Bidder(storeName: "우리옷 진솔 한복", phoneNumber: "123", location: "456", biddingList: [biddingDummy1])
 let bidderDummy2 = Bidder(storeName: "궁전 김민지 한복", phoneNumber: "456", location: "789", biddingList: [biddingDummy2])
 let bidderDummy3 = Bidder(storeName: "정현주단", phoneNumber: "789", location: "101", biddingList: [biddingDummy3])
 

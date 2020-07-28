@@ -13,6 +13,7 @@
 		43634D2224A034B70062E31D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43634D2024A034B70062E31D /* Main.storyboard */; };
 		43634D2424A034BC0062E31D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43634D2324A034BC0062E31D /* Assets.xcassets */; };
 		43634D2724A034BC0062E31D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43634D2524A034BC0062E31D /* LaunchScreen.storyboard */; };
+		437D553F24B434DD00DC195D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437D553E24B434DD00DC195D /* MessageUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		43634D2324A034BC0062E31D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43634D2624A034BC0062E31D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		43634D2824A034BC0062E31D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		437D553E24B434DD00DC195D /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				437D553F24B434DD00DC195D /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +45,7 @@
 			children = (
 				43634D1924A034B70062E31D /* phoneExample */,
 				43634D1824A034B70062E31D /* Products */,
+				437D553D24B434DD00DC195D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -65,6 +69,14 @@
 				43634D2824A034BC0062E31D /* Info.plist */,
 			);
 			path = phoneExample;
+			sourceTree = "<group>";
+		};
+		437D553D24B434DD00DC195D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				437D553E24B434DD00DC195D /* MessageUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,6 +297,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 62K66S66G5;
 				INFOPLIST_FILE = phoneExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -302,6 +315,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 62K66S66G5;
 				INFOPLIST_FILE = phoneExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

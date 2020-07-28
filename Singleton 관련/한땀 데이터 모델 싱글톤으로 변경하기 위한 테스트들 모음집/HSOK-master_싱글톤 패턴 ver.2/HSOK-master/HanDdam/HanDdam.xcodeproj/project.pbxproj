@@ -87,7 +87,7 @@
 		04B63180241CBD6000E0679D /* FabricCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabricCell.swift; sourceTree = "<group>"; };
 		04C4415E244604BA00C94978 /* HomeViewTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewTableViewController.swift; sourceTree = "<group>"; };
 		04FC79D124045FD9009BA4B9 /* DummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
-		435A47EA24542CEA00525677 /* BiddingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiddingTableViewController.swift; sourceTree = "<group>"; };
+		435A47EA24542CEA00525677 /* BiddingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BiddingTableViewController.swift; path = ../RequestScreen/BiddingTableViewController.swift; sourceTree = "<group>"; };
 		435A47EC24542D7900525677 /* ShowRequestInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowRequestInfoTableViewController.swift; sourceTree = "<group>"; };
 		439E8016244D454F00833E43 /* RequestListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestListTableViewCell.swift; sourceTree = "<group>"; };
 		439E8017244D454F00833E43 /* RequestListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestListTableViewCell.xib; sourceTree = "<group>"; };
@@ -175,6 +175,7 @@
 		0433176F23CF298B00549162 /* HomeScreen */ = {
 			isa = PBXGroup;
 			children = (
+				435A47EA24542CEA00525677 /* BiddingTableViewController.swift */,
 				04C4415E244604BA00C94978 /* HomeViewTableViewController.swift */,
 				041D724E242DF26D0065B583 /* ShowPDFViewController.swift */,
 				041D7241242DE9FD0065B583 /* HomeViewLookBookPDF */,
@@ -192,7 +193,6 @@
 				04E9656D2429C9FE00963710 /* DetailRequestVC */,
 				048CE3C123E170B9008DD2F7 /* LastCheckRequestTableViewController.swift */,
 				048CE3C323E181AF008DD2F7 /* LastRequestTableViewCell.swift */,
-				435A47EA24542CEA00525677 /* BiddingTableViewController.swift */,
 				43AAC3832456B92F004F25FC /* BiddingTableViewCell.swift */,
 				43AAC3842456B92F004F25FC /* BiddingTableViewCell.xib */,
 				43AAC389245718E4004F25FC /* DetailBiddingTableViewController.swift */,

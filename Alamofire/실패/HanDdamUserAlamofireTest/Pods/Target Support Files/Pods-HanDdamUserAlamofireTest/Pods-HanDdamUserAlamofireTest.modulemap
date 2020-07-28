@@ -1,0 +1,6 @@
+framework module Pods_HanDdamUserAlamofireTest {
+  umbrella header "Pods-HanDdamUserAlamofireTest-umbrella.h"
+
+  export *
+  module * { export * }
+}
