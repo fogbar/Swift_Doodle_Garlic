@@ -71,7 +71,7 @@ class Request {
     }
 }
 
-struct RequestToServer {
+struct RequestToServer:Codable {
     //request uuid
     //let uuid:String
     var detailRequestsToServer : [DetailRequestToServer]
@@ -120,7 +120,7 @@ class DetailRequest {
     }
 }
 
-struct DetailRequestToServer {
+struct DetailRequestToServer:Codable {
     // 대상
     var person : String
     // 세부 견적

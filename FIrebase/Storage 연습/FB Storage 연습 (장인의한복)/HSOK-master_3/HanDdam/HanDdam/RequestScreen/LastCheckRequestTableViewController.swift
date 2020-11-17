@@ -14,15 +14,15 @@ class LastCheckRequestTableViewController: UITableViewController, UITextViewDele
     //MARK:- 내부적으로 사용되는 변수들
     //이 VC에서 사용될 request 인스턴스
     var request = Request()
-    
+    var requestToServer = RequestToServer()
     //병렬, 동기 큐
-    
+    let dispatchGroup = DispatchGroup()
     
     //MARK:- ViewLifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        requestToServer.detailRequestsToServer = request.detailRequests.map({ (detailRequest) in
+        self.requestToServer.detailRequestsToServer = request.detailRequests.map({ (detailRequest) in
             var detailRequestToServer = DetailRequestToServer()
             detailRequestToServer.person = detailRequest.person
             detailRequestToServer.makingType = detailRequest.makingType
@@ -38,6 +38,8 @@ class LastCheckRequestTableViewController: UITableViewController, UITextViewDele
         })
         
         print(requestToServer)
+        
+        
         
     }
     
@@ -63,17 +65,11 @@ class LastCheckRequestTableViewController: UITableViewController, UITextViewDele
         let yesAction = UIAlertAction(title: "요청하기", style: .default) { (_) in
             self.request.endDate = Date() + 1209600
             
-            DispatchQueue.global().sync {
-                for index in 0..<self.request.detailRequests.count {
-                    FBStorageService.instance.uploadRequestImage(self.request.detailRequests[index].detailImage!) { (url) in
-                        if let requestImageUrl = url?.absoluteString {
-                            requestToServer.detailRequestsToServer[index].detailImage = requestImageUrl
-                        }
-                    }
-                }
-            }
-            self.performSegue(withIdentifier: "unwindToRequestTVCSegue1", sender: self)
-
+            //DispatchGroup에 보면 함수 중에 모든 작업이 완료되었을때 noti를 받는게 있음. 이걸 이용해서 완료가 다 되었을때 그때 posting하는 부분 구현하고 그 다음에 performSegue를 하면 됨.
+            
+            self.getImageUrlAndPostRequest()
+            //이미지들을 FBStorage에다가 올려서 url를 받아오고, 그리고 그걸 인스턴스에 추가한 다음 그 인스턴스를 서버에 업로드 시키려고 하는데 비동기 처리다보니까 일단 performSegue가 실행이 되는데, performSegue가 실행되기 전에 이 모든 작업이 끝내고 싶다. 왜냐하면 performSegue한 곳에서 get으로 서버에 올린 구조체를 받아와서 바로 뿌려주기 때문.
+            
         }
         let cancelAction = UIAlertAction(title: "취소", style: .cancel) { (_) in
             
@@ -82,6 +78,26 @@ class LastCheckRequestTableViewController: UITableViewController, UITextViewDele
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
     }
+    
+    func getImageUrlAndPostRequest() {
+        dispatchGroup.enter()
+        
+        for index in 0..<self.request.detailRequests.count {
+            FBStorageService.instance.uploadRequestImage(self.request.detailRequests[index].detailImage!) { (url) in
+                if let requestImageUrl = url?.absoluteString {
+                    self.requestToServer.detailRequestsToServer[index].detailImage = requestImageUrl
+                }
+            }
+        }
+        self.dispatchGroup.leave()
+        self.dispatchGroup.notify(queue: .main) {
+            API.shared.postRequest(with: self.requestToServer) {
+                self.performSegue(withIdentifier: "unwindToRequestTVCSegue1", sender: self)
+            }
+        }
+    }
+    
+    
     
     // MARK: - Table view data source
     

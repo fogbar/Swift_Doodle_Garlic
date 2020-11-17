@@ -55,6 +55,10 @@
 		437D554A24B43E4B00DC195D /* CertificationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D554824B43E4B00DC195D /* CertificationListCell.swift */; };
 		437D554B24B43E4B00DC195D /* CertificationListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 437D554924B43E4B00DC195D /* CertificationListCell.xib */; };
 		437D554D24B44E6200DC195D /* ShowCertificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437D554C24B44E6200DC195D /* ShowCertificationViewController.swift */; };
+		439800B624D124DE00B0BF79 /* KingfisherDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 439800B524D124DE00B0BF79 /* KingfisherDynamic */; };
+		439800B724D124DE00B0BF79 /* KingfisherDynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 439800B524D124DE00B0BF79 /* KingfisherDynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		439800B924D124DE00B0BF79 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 439800B824D124DE00B0BF79 /* Kingfisher */; };
+		439800BB24D124DE00B0BF79 /* KingfisherStatic in Frameworks */ = {isa = PBXBuildFile; productRef = 439800BA24D124DE00B0BF79 /* KingfisherStatic */; };
 		43989D6A24B361BC004E3832 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 43989D6924B361BC004E3832 /* Alamofire */; };
 		43989D6C24B36A40004E3832 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43989D6B24B36A40004E3832 /* SignUpViewController.swift */; };
 		439E8018244D454F00833E43 /* RequestListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439E8016244D454F00833E43 /* RequestListTableViewCell.swift */; };
@@ -66,6 +70,20 @@
 		43DB15142462652900EE3238 /* MyPageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43DB15122462652900EE3238 /* MyPageTableViewCell.xib */; };
 		B4D5DF5019AB7858255128FB /* Pods_HanDdam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E83BDEBC85DBB8EBBF83FA1E /* Pods_HanDdam.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		439800BC24D124DE00B0BF79 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				439800B724D124DE00B0BF79 /* KingfisherDynamic in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		041D723D242C8F760065B583 /* DetailRequestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRequestTableViewController.swift; sourceTree = "<group>"; };
@@ -136,9 +154,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				439800B624D124DE00B0BF79 /* KingfisherDynamic in Frameworks */,
 				041D7257242DF9130065B583 /* WebKit.framework in Frameworks */,
+				439800BB24D124DE00B0BF79 /* KingfisherStatic in Frameworks */,
 				43989D6A24B361BC004E3832 /* Alamofire in Frameworks */,
 				B4D5DF5019AB7858255128FB /* Pods_HanDdam.framework in Frameworks */,
+				439800B924D124DE00B0BF79 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +349,7 @@
 				0433174623CF277D00549162 /* Frameworks */,
 				0433174723CF277D00549162 /* Resources */,
 				8DBFB151E93C2D7AB83C115A /* [CP] Embed Pods Frameworks */,
+				439800BC24D124DE00B0BF79 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -336,6 +358,9 @@
 			name = HanDdam;
 			packageProductDependencies = (
 				43989D6924B361BC004E3832 /* Alamofire */,
+				439800B524D124DE00B0BF79 /* KingfisherDynamic */,
+				439800B824D124DE00B0BF79 /* Kingfisher */,
+				439800BA24D124DE00B0BF79 /* KingfisherStatic */,
 			);
 			productName = HanDdam;
 			productReference = 0433174923CF277D00549162 /* HanDdam.app */;
@@ -367,6 +392,7 @@
 			mainGroup = 0433174023CF277D00549162;
 			packageReferences = (
 				43989D6824B361BC004E3832 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				439800B424D124DE00B0BF79 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 0433174A23CF277D00549162 /* Products */;
 			projectDirPath = "";
@@ -690,6 +716,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		439800B424D124DE00B0BF79 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.14.1;
+			};
+		};
 		43989D6824B361BC004E3832 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -701,6 +735,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		439800B524D124DE00B0BF79 /* KingfisherDynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 439800B424D124DE00B0BF79 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = KingfisherDynamic;
+		};
+		439800B824D124DE00B0BF79 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 439800B424D124DE00B0BF79 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		439800BA24D124DE00B0BF79 /* KingfisherStatic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 439800B424D124DE00B0BF79 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = KingfisherStatic;
+		};
 		43989D6924B361BC004E3832 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 43989D6824B361BC004E3832 /* XCRemoteSwiftPackageReference "Alamofire" */;

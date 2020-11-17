@@ -8,7 +8,8 @@
 
 import Foundation
 import Alamofire
-import AlamofireImage
+//import AlamofireImage
+import Kingfisher
 
 //회원가입시 필요한 매개변수들
 typealias SignUpComponent = (id:String, password:String, nickname:String, phoneNumber:String)
@@ -58,6 +59,34 @@ class API {
         }
     }
     
+    // MARK:- postRequest 함수
+    //유저가 신청한 요청견적 서버에 올리기
+    func postRequest(with request:RequestToServer, completionHandler:@escaping () -> Void) {
+        //1. 전송할 데이터
+        guard let jsonBody = try? JSONEncoder().encode(request) else {return}
+        //2. 보낼 서버 위치
+        let endPoint = "/requests/"
+        guard let url = URL(string: baseUrlString + endPoint) else {return}
+        var urlRequest = URLRequest(url: url)
+        //3. request setting
+        urlRequest.method = .post
+        urlRequest.httpBody = jsonBody
+        //4. request header 작성
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        guard let token = UserDefaults.standard.string(forKey: "token") else {return}
+        urlRequest.addValue(token, forHTTPHeaderField: "Authorization")
+        //5. post 시도
+        //Json 형식을 받아오는게 아니기 때문에 responseJson이 아닌 response를 사용
+        AF.request(urlRequest as URLRequestConvertible).response { (response) in
+            switch response.result {
+            case .success:
+                completionHandler()
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
     // MARK: - 서버 통신전 request 생성 함수
 //
 //    var fakeRequests:[DetailRequest] = []
@@ -76,17 +105,21 @@ class API {
     
     
     //MARK:- AlamofireImage
-    func getImage(with imageUrl:String, completionHandler:@escaping (Image) -> Void) {
-        AF.request(imageUrl).responseImage { (response) in
-            switch response.result {
-            case .success(let image):
-                completionHandler(image)
-            case .failure(let err):
-                print("Err: \(err)")
-            }
-        }
-    }
+//    func getImage(with imageUrl:String, completionHandler:@escaping (Image) -> Void) {
+//        AF.request(imageUrl).responseImage { (response) in
+//            switch response.result {
+//            case .success(let image):
+//                completionHandler(image)
+//            case .failure(let err):
+//                print("Err: \(err)")
+//            }
+//        }
+//    }
     
+//    func getImage(with imageUrl:String, completionHandler:@escaping (Image) -> Void) {
+//        guard let url = URL(string: imageUrl) else {return}
+//        
+//    }
 }
 
 

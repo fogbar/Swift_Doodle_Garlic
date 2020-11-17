@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class RequestTableViewController: UITableViewController {
     
@@ -109,8 +110,8 @@ class RequestTableViewController: UITableViewController {
     //참고 : token을 UserDefaults에 저장하면 앱이 처음에 켜질때 서버로 token을 보내 확인시킨다.
     @IBAction func ClickAddReqeustBtn(_ sender: UIButton) {
         //로그인 여부에 따라 false면 회원가입 창, true면 세부견적 작성 뷰 창을 띄움
-            performSegue(withIdentifier: "modalDetailRequestVCSegue", sender: self)
-
+        performSegue(withIdentifier: "modalDetailRequestVCSegue", sender: self)
+        
     }
     //unwindSegue를 위해 작성된 action. LastCheckVC에서와 DetailBiddingTVC에서 작동함.
     @IBAction func unwindToRequestTVC(segue : UIStoryboardSegue) {
@@ -175,16 +176,16 @@ class RequestTableViewController: UITableViewController {
         //endTime을 비동기로 받아오고 tableView를 1분마다 reload 시킨다라고 가정하면 줄어들 것 같다
         
         let endTime = endTime //일단은 이렇게 해주는데 서버에 endTime을 올리게 되면 그냥 get으로 받아와서 현재 시간만 빼면 됨
-         
-         let time = Int(endTime.timeIntervalSince(currentTime))
-         let day : Int = time / 86400
-         let hour : Int = day / 14400
-         let minute  : Int = hour / 3600
-         
-         print(currentTime)
-         print(endTime)
-         
-         return "요청 시간이 \(day)일 \(hour)시간 \(minute)분 남았습니다"
+        
+        let time = Int(endTime.timeIntervalSince(currentTime))
+        let day : Int = time / 86400
+        let hour : Int = day / 14400
+        let minute  : Int = hour / 3600
+        
+        print(currentTime)
+        print(endTime)
+        
+        return "요청 시간이 \(day)일 \(hour)시간 \(minute)분 남았습니다"
     }
     
     // MARK: - Table view data source
@@ -204,98 +205,96 @@ class RequestTableViewController: UITableViewController {
         //let imageCell = tableView.dequeueReusableCell(withIdentifier: "imageCell")
         let cell = tableView.dequeueReusableCell(withIdentifier: "imageCell", for: indexPath)
         //guard let cell = tableView.dequeueReusableCell(withIdentifier: "RequestListCell", for: indexPath) as? RequestListTableViewCell else {return UITableViewCell()}
-//
-//        let userRequestListInSection = user.myRequests[indexPath.section]
-//        let detailConditions = userRequestListInSection.detailRequests[indexPath.row]
-//
-//        //여기선 어떻게 cell에다가 왼쪽에는 대상, 가운데는 정보, 오른쪽에는 discloure와 indicator discloure를 넣을지 생각해보기. 짜피 하나의 cell만 정해놓으면 나머지는 정보들만 집어넣으면 되니깐.(indexpath 통해서)
-//
-//        cell.personLabel.text = userRequestListInSection.detailRequests[indexPath.row].person
-//        cell.detailLabel.text = "\(detailConditions.makingType)/\(detailConditions.fabric)/\(detailConditions.age)/\(detailConditions.season)"
-//
-//        cell.personLabel.sizeToFit()
-//        cell.detailLabel.sizeToFit()
+        //
+        //        let userRequestListInSection = user.myRequests[indexPath.section]
+        //        let detailConditions = userRequestListInSection.detailRequests[indexPath.row]
+        //
+        //        //여기선 어떻게 cell에다가 왼쪽에는 대상, 가운데는 정보, 오른쪽에는 discloure와 indicator discloure를 넣을지 생각해보기. 짜피 하나의 cell만 정해놓으면 나머지는 정보들만 집어넣으면 되니깐.(indexpath 통해서)
+        //
+        //        cell.personLabel.text = userRequestListInSection.detailRequests[indexPath.row].person
+        //        cell.detailLabel.text = "\(detailConditions.makingType)/\(detailConditions.fabric)/\(detailConditions.age)/\(detailConditions.season)"
+        //
+        //        cell.personLabel.sizeToFit()
+        //        cell.detailLabel.sizeToFit()
         guard let imageView = cell.viewWithTag(101) as? UIImageView else {return UITableViewCell()}
         
-        API.shared.getImage(with: requestToServer.detailRequestsToServer[indexPath.section].detailImage, completionHandler: { (image) in
+        let url = URL(string: requestToServer.detailRequestsToServer[indexPath.row].detailImage)
             
-            DispatchQueue.main.async {
-                imageView.image = image
-                //sizeToFit이 얼마나 효과가 있을지는 모르겠음. 없는 것 같음...
-                imageView.sizeToFit()
-            }
-        })
-        
-        
-        
-        
+        imageView.kf.setImage(with: url)
+        //        API.shared.getImage(with: requestToServer.detailRequestsToServer[indexPath.section].detailImage, completionHandler: { (image) in
+        //
+        //            DispatchQueue.main.async {
+        //                imageView.image = image
+        //                //sizeToFit이 얼마나 효과가 있을지는 모르겠음. 없는 것 같음...
+        //                imageView.sizeToFit()
+        //            }
         return cell
-    }
+}
+
+//MARK: - table view delegate Method
+override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    var height : CGFloat
+    height = 50.0
+    return height
+}
+
+override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    var headerView : UIView?
+    headerView = UIView(frame: CGRect(x:0, y:0, width:tableView.frame.size.width, height:50))
+    headerView?.backgroundColor = UIColor.clear
     
-    //MARK: - table view delegate Method
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        var height : CGFloat
-        height = 50.0
-        return height
-    }
+    let requestNumber = UILabel(frame: CGRect(x: 30, y: 20, width: 100, height: 30))
+    //CGRect는 부모뷰의 origin 기준임.
+    requestNumber.font = UIFont.boldSystemFont(ofSize: 20)
+    requestNumber.textColor = UIColor.black
+    requestNumber.text = "요청 \(String(section + 1))"
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        var headerView : UIView?
-        headerView = UIView(frame: CGRect(x:0, y:0, width:tableView.frame.size.width, height:50))
-        headerView?.backgroundColor = UIColor.clear
-        
-        let requestNumber = UILabel(frame: CGRect(x: 30, y: 20, width: 100, height: 30))
-        //CGRect는 부모뷰의 origin 기준임.
-        requestNumber.font = UIFont.boldSystemFont(ofSize: 20)
-        requestNumber.textColor = UIColor.black
-        requestNumber.text = "요청 \(String(section + 1))"
-        
-        let dateCounter = UILabel(frame: CGRect(x: 160, y: 20, width: 270, height: 30))//DataFormatter를 통해 시간 얻어내는 법 알아내서 구현해야함.
-        dateCounter.font = UIFont.systemFont(ofSize: 10)
-        dateCounter.textColor = UIColor(cgColor: CGColor(srgbRed: 0/255, green: 148/255, blue: 115/255, alpha: 1.0))
-        
-        //guard let endDate = user.myRequests[section].endDate else {return UIView()}
-        
-        //dateCounter.text = returnDateCountString(with: endDate)
-        
-        headerView?.addSubview(requestNumber)
-        headerView?.addSubview(dateCounter)
-        
-        //어떻게해야 각 section마다 집어넣을 수 있을까?
-        return headerView
-    }
+    let dateCounter = UILabel(frame: CGRect(x: 160, y: 20, width: 270, height: 30))//DataFormatter를 통해 시간 얻어내는 법 알아내서 구현해야함.
+    dateCounter.font = UIFont.systemFont(ofSize: 10)
+    dateCounter.textColor = UIColor(cgColor: CGColor(srgbRed: 0/255, green: 148/255, blue: 115/255, alpha: 1.0))
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let biddingTVC = self.storyboard?.instantiateViewController(identifier: "BiddingTVC") as? BiddingTableViewController else {return}
-        
-        //Indexpath에 대한 입찰 정보들이 뜨도록 해야하는데... 흐음... 일단 biddingVC에서 상인들이 넣은 정보들을 어떻게 보여줄건지에 대해서 그리고 보여주는게 구체화 되면 여기서 찾은 IndexPaht에 해당하는 입찰 정보들을 가져올 수 있도록 해야겠음.
-        
-        biddingTVC.navigationItem.title = "'요청 \(indexPath.row + 1)'에 대한 견적"
-        biddingTVC.navigationItem.largeTitleDisplayMode = .never
-        
-        self.navigationController?.pushViewController(biddingTVC, animated: true)
-        
-        //만약 클릭시에 선택되어 있는 것을 끄고 싶다면 아래 코드를 활성화시키세요
-        self.tableView.deselectRow(at: indexPath, animated: true)
-        
-    }
+    //guard let endDate = user.myRequests[section].endDate else {return UIView()}
     
-    //    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-    //        guard let showInfoTVC = self.storyboard?.instantiateViewController(identifier: "ShowRequestInfoTVC") as? ShowRequestInfoTableViewController else {return}
-    //
-    //        //ShowRequestInfoVC의 UI가 나오면 UI를 먼저 구현하고 그냥 User에서 정보가져와서 뿌리면 되니까 큰 무리 없을 것 같음
-    //
-    //        self.navigationController?.pushViewController(showInfoTVC, animated: true)
-    //    }
+    //dateCounter.text = returnDateCountString(with: endDate)
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    headerView?.addSubview(requestNumber)
+    headerView?.addSubview(dateCounter)
     
+    //어떻게해야 각 section마다 집어넣을 수 있을까?
+    return headerView
+}
+
+override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard let biddingTVC = self.storyboard?.instantiateViewController(identifier: "BiddingTVC") as? BiddingTableViewController else {return}
+    
+    //Indexpath에 대한 입찰 정보들이 뜨도록 해야하는데... 흐음... 일단 biddingVC에서 상인들이 넣은 정보들을 어떻게 보여줄건지에 대해서 그리고 보여주는게 구체화 되면 여기서 찾은 IndexPaht에 해당하는 입찰 정보들을 가져올 수 있도록 해야겠음.
+    
+    biddingTVC.navigationItem.title = "'요청 \(indexPath.row + 1)'에 대한 견적"
+    biddingTVC.navigationItem.largeTitleDisplayMode = .never
+    
+    self.navigationController?.pushViewController(biddingTVC, animated: true)
+    
+    //만약 클릭시에 선택되어 있는 것을 끄고 싶다면 아래 코드를 활성화시키세요
+    self.tableView.deselectRow(at: indexPath, animated: true)
+    
+}
+
+//    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+//        guard let showInfoTVC = self.storyboard?.instantiateViewController(identifier: "ShowRequestInfoTVC") as? ShowRequestInfoTableViewController else {return}
+//
+//        //ShowRequestInfoVC의 UI가 나오면 UI를 먼저 구현하고 그냥 User에서 정보가져와서 뿌리면 되니까 큰 무리 없을 것 같음
+//
+//        self.navigationController?.pushViewController(showInfoTVC, animated: true)
+//    }
+
+/*
+ // MARK: - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+ // Get the new view controller using segue.destination.
+ // Pass the selected object to the new view controller.
+ }
+ */
+
 }
