@@ -14,6 +14,7 @@
 		43634D2424A034BC0062E31D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43634D2324A034BC0062E31D /* Assets.xcassets */; };
 		43634D2724A034BC0062E31D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43634D2524A034BC0062E31D /* LaunchScreen.storyboard */; };
 		437D553F24B434DD00DC195D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437D553E24B434DD00DC195D /* MessageUI.framework */; };
+		439C16A025E7494D0087A888 /* DynamicallyCallFunctionTesty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439C169F25E7494D0087A888 /* DynamicallyCallFunctionTesty.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		43634D2624A034BC0062E31D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		43634D2824A034BC0062E31D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		437D553E24B434DD00DC195D /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		439C169F25E7494D0087A888 /* DynamicallyCallFunctionTesty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicallyCallFunctionTesty.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				43634D1A24A034B70062E31D /* AppDelegate.swift */,
 				43634D1C24A034B70062E31D /* SceneDelegate.swift */,
 				43634D1E24A034B70062E31D /* ViewController.swift */,
+				439C169F25E7494D0087A888 /* DynamicallyCallFunctionTesty.swift */,
 				43634D2024A034B70062E31D /* Main.storyboard */,
 				43634D2324A034BC0062E31D /* Assets.xcassets */,
 				43634D2524A034BC0062E31D /* LaunchScreen.storyboard */,
@@ -153,6 +156,7 @@
 				43634D1F24A034B70062E31D /* ViewController.swift in Sources */,
 				43634D1B24A034B70062E31D /* AppDelegate.swift in Sources */,
 				43634D1D24A034B70062E31D /* SceneDelegate.swift in Sources */,
+				439C16A025E7494D0087A888 /* DynamicallyCallFunctionTesty.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

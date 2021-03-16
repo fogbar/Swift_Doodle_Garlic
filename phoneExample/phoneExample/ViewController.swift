@@ -38,6 +38,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let car = Car()
+        car.perform(NSSelectorFromString("drive"))
         
     }
     
